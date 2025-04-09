@@ -1,0 +1,23 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+
+# Card:add_to_deck()
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "function Card:add_to_deck(from_debuff)"
+position = 'after'
+payload = "check_for_cry_add(self, from_debuff, true)"
+match_indent = true
+
+# Card:remove_from_deck()
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "function Card:remove_from_deck(from_debuff)"
+position = 'after'
+payload = "check_for_cry_remove(self, from_debuff, false)"
+match_indent = true
